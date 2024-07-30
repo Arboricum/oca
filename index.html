@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="description" content="Il gioco dell'oca rivisitato, basato su 'La latteria di Bazagubigogi' dell'Arboricum Sandorsi">
+<meta name="keywords" content="html game, game, il gioco dell'oca">
+<meta name="author" content="Arboricum Sandorsi">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:title" content="Il gioco dell'oca 2.0">
+<meta property="og:description" content="Il gioco dell'oca ">
+<meta property="og:image" content="img/c1.jpg">
+<meta property="og:url" content="img/c1.jpg">
+
+<title>Il gioco dell'oca 2.0</title>
+
+<style>
+.main {
+position: relative;
+width: 1900px;
+height: 940px;
+background-image: url('img/sfondo.jpg');
+background-repeat: no-repeat;
+background-size:100% 1000px;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="run/oca.css">
+
+<script src = 'run/start.js'></script>
+<script src = 'run/dadi.js'></script>
+<script src = 'run/muovi1.js'></script>
+<script src = 'run/caselle1.js'></script>
+<script src = 'run/turni.js'></script>
+<script src = 'run/popup.js'></script>
+<script src = 'run/battle.js'></script>
+<script src = 'run/win.js'></script>
+
+</head>
+
+<body onload='startCas(), clearForm()'>
+
+<div class='main'>
+<div id='fila1'><img class='caselle bordoIni' style='margin-left:40px'><img class='caselle bordo1' style='border-width: 3px 1px 3px 3px;border-style: solid solid solid dotted'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1' style='border-width: 3px 3px 3px 1px;border-style: solid dotted solid solid'><img class='caselle bordo2Ane'></div>
+<div id='fila2'><img class='caselle bordo2Ano' style='margin-left:40px'><img class='caselle bordo1' style='border-width: 3px 1px 3px 3px;border-style: solid solid solid dotted'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo2Ane'><img class='caselle bordo4'></div>
+<div id='fila3'><img class='caselle bordo5' style='margin-left:40px'><img class='caselle bordo2Ano' style='border-width: 3px'><img class='caselle bordo1' style='border-style: solid solid solid none'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordo1'><img class='caselle bordoFine' style='width:196px;'><img class='caselle' style='display:none'><img class='caselle bordo4'><img class='caselle bordo4'></div>
+<div id='fila4'><img class='caselle bordo5' style='margin-left:40px'><img class='caselle bordo2Aso' style='border-width: 3px'><img class='caselle bordo3' style='border-style: solid solid solid none'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo2Ase'><img class='caselle bordo4'></div>
+<div id='fila5'><img class='caselle bordo2Aso' style='margin-left:40px'><img class='caselle bordo3' style='border-width: 3px 1px 3px 3px;border-style: solid solid solid dotted'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3'><img class='caselle bordo3' style='border-width: 3px 3px 3px 1px;border-style: solid dotted solid solid'><img class='caselle bordo2Ase'></div>
+<img class='ped'><img class='ped'><img class='ped'><img class='ped'>
+<br>
+
+<div class='popup' style='display:none'>
+<table>
+<tr>
+  <td id='nome'></td>
+  <td id='vita'></td>
+  <td id='forza'></td>
+  <td id='oro'></td>
+</tr>
+</table>
+<p id='casTxt'></p>
+<div id='btnArmi' style='display:none'><button id='arma5' class='armi'></button><button id='arma1' class='armi'></button><button id='arma2' class='armi'></button><button id='arma3' class='armi'></button><button id='arma4' class='armi'></button></div>
+<p id='alert'></p>
+<button id='tButton' style='border-radius:10px;border: 1px solid black;cursor:pointer'></button>
+</div>
+
+<div class='popupS'>
+<h1>Il gioco dell'oca 2.0</h1>
+<span id='s1'><p style='display:inline-block; margin-right:10px'>Numero di giocatori</p><button class='btnS' onclick='start2G()'>2</button><button class='btnS' onclick='start3G()'>3</button><button class='btnS' onclick='start4G()'>4</button></span>
+<table id='s2'>
+<tr id='s2a'>
+  <td>Nome giocatore 1</td>
+  <td><input type='text' name='inputa' value='G1'></td>
+  <td>Suoni</td>
+  <td><input list="soundsGame" name="inputb" placeholder="default"></td>
+</tr>
+<tr id='s2b'>
+  <td>Nome giocatore 2</td>
+  <td><input type='text' name='inputa' value='G2'></td>
+  <td>Suoni</td>
+  <td><input list="soundsGame" name="inputb" placeholder="default"></td>
+</tr>
+<tr id='s2c'>
+  <td>Nome giocatore 3</td>
+  <td><input type='text' name='inputa' value='G3'></td>
+  <td>Suoni</td>
+  <td><input list="soundsGame" name="inputb" placeholder="default"></td>
+</tr>
+<tr id='s2d'>
+  <td>Nome giocatore 4</td>
+  <td><input type='text' name='inputa' value='G4'></td>
+  <td>Suoni</td>
+  <td><input list="soundsGame" name="inputb" placeholder="default"></td>
+</tr>
+</table>
+<datalist id="soundsGame">
+  <option value="Scoreggia">
+  <option value="Rutto">
+  <option value="Fango">
+  <option value="Cigolio">
+</datalist>
+<button id='giocatori' onclick='numGiocatori()' style='visibility:hidden;cursor:pointer;margin-top:5px;border-radius:5px;border: 1px solid black;width:50px;height:50px;padding:10px'>OK</button>
+<p>Per una migliore esperienza di gioco,<br> zoomma il browser per vedere tutto il tabellone</P>
+</div>
+
+<div class='popupD'>
+<img id='popupD1' width='80px' height='80px'><img id='popupD2' style='display:none' width='80px' height='80px'>
+</div>
+<div class='popupF'><h2 id='pf'></h2></div>
+
+<div class='aggiornamento'><h4 id='aggG1' class='agg' style='color: red'></h4><h4 id='aggG2' class='agg' style='color: blue'></h4><h4 id='aggG3' class='agg' style='color: yellow'></h4><h4 id='aggG4' class='agg' style='color: green'></h4></div><br>
+
+<div class='popupIst'>
+<h3>Il gioco dell'oca 2.0</h3><br><br>
+<p>Seleziona il numero di giocatori, il rumore dei passi che farà ogni giocatore (default: scoreggia), e cerca di arrivare per primo all'ultima casella del percorso o impedisci agli altri di farlo.<br>
+ogni giocatore avrà 3 parametri:<br>
+- Vita: quando arriva a 0, vieni eliminato;<br>
+- Forza: incrementa la potenza delle armi;<br>
+- Oro: ti consente di acquistare armi e potenziamenti.<br>
+Hai a disposizione le seguenti armi:<br>
+- Cacca (costo: 10 oro): clicca sull'icona per rilasciare una cacchina sulla casella in cui ti trovi e che toglierà vita e oro a chi ci finirà sopra;<br>
+- Frusta (costo: 20 oro): clicca sull'icona e poi sulla pedina del giocatore che intendi frustare per diminuire la sua vita e la sua forza;<br>
+- Razzo (costo: 40 oro): clicca sull'icona e poi sulla pedina del giocatore per far partire un razzo dagli effetti devastanti.<br>
+I potenziamenti:<br>
+- Cura (costo: 20 oro): riacquista 20 punti vita.<br>
+- Dadi doppi (costo: 40 oro): tira due dadi.<br>
+Alcune caselle contengono trappole o ricompense.<br>
+Buon divertimento!</p></br><br>
+<button id='closeIst' onclick='closeIstruzioni()'>OK</button>
+</div>
+
+<button id='openIst' style='position:absolute;bottom:5px;left:5px'>Istruzioni</button>
+
+</div>
+
+<h1 id='test' style='color:black;display:inline'></h1><h1 id='test2' style='color:black;display:inline'></h1>
+
+<img id='razzo' src='img/razzo.png' width="50px" height="50px" style="position:absolute;display:none">
+
+<audio id="suono"><source src="" type="audio/mpeg"/></audio>
+<audio id="suono2"><source src="" type="audio/mpeg"/></audio>
+<audio id="suono3"><source src="" type="audio/mpeg"/></audio>
+<audio id="suonoG1"><source src="" type="audio/mpeg"/></audio>
+<audio id="suonoG2"><source src="" type="audio/mpeg"/></audio>
+<audio id="suonoG3"><source src="" type="audio/mpeg"/></audio>
+<audio id="suonoG4"><source src="" type="audio/mpeg"/></audio>
+<audio id="suonomorte"><source src="" type="audio/mpeg"/></audio>
+
+</body>
+
+
+
+<script>
+document.getElementById('openIst').addEventListener('click', openIstruzioni);
+
+var numG;
+
+var pedA1 = document.getElementsByClassName('ped')[0];
+var pedA2 = document.getElementsByClassName('ped')[1];
+var pedA3 = document.getElementsByClassName('ped')[2];
+var pedA4 = document.getElementsByClassName('ped')[3];
+var ped1;
+var ped2;
+var ped3;
+var ped4;
+g1 = document.getElementsByName('inputa')[0];
+g2 = document.getElementsByName('inputa')[1];
+g3 = document.getElementsByName('inputa')[2];
+g4 = document.getElementsByName('inputa')[3];
+g1SoundT = document.getElementsByName('inputb')[0];
+g2SoundT = document.getElementsByName('inputb')[1];
+g3SoundT = document.getElementsByName('inputb')[2];
+g4SoundT = document.getElementsByName('inputb')[3];
+var g1Sound;
+var g2Sound;
+var g3Sound;
+var g4Sound;
+
+//variabili per i suoni
+sound1 = document.getElementById('suono');
+sound2 = document.getElementById('suono2');
+sound3 = document.getElementById('suono3');
+soundG1 = document.getElementById('suonoG1');
+soundG2 = document.getElementById('suonoG2');
+soundG3 = document.getElementById('suonoG3');
+soundG4 = document.getElementById('suonoG4');
+soundM = document.getElementById('suonomorte');
+
+//incremento coordinate passi
+const xP = 100;
+const yP = 178;
+
+//passa coordinate e dati tra pedine e caselle
+var goldTemp;
+var powerTemp;
+var lifeTemp;
+var tfTemp;
+x1C = 70;
+y1C = 115;
+x2C = 110;
+y2C = 25;
+var x1Temp;
+var y1Temp;
+var x2Temp;
+var y2Temp;
+var contCasTemp;
+var casTemp;
+var trasp;
+var rad;
+
+// i si usa in muovi.js
+var i = 1;
+var turno = 'p1';
+var contTurno = 1;
+txtCas = '';
+var bomba;
+var caccaImg;
+
+//dadi
+var d1 = document.getElementById('popupD1');
+var d2 = document.getElementById('popupD2');
+var contDado;
+var contDado1;
+var contDado2 = 'x';
+
+//usati in popup.js
+tabP = document.getElementsByClassName('popup')[0];
+nomeP = document.getElementById('nome');
+vitaP = document.getElementById('vita');
+forzaP = document.getElementById('forza');
+oroP = document.getElementById('oro');
+txtCasP = document.getElementById('casTxt');
+bottoneP = document.getElementById('tButton');
+btnArmiDiv = document.getElementById('btnArmi');
+//frusta
+arma1P = document.getElementById('arma1');
+//cura
+arma2P = document.getElementById('arma2');
+//razzo
+arma3P = document.getElementById('arma3');
+//dadi doppi
+arma4P = document.getElementById('arma4');
+//cacca
+arma5P = document.getElementById('arma5');
+dadi2 = 'off';
+//usato in win.js
+tabF = document.getElementsByClassName('popupF')[0];
+alertF = document.getElementById('pf');
+
+var popupNome;
+var popupGold;
+var popupPower;
+var popupLife;
+var popupCas;
+//definito in iniziaTurno
+var indPopup;
+var popupTf;
+
+//RAZZO
+
+var razzoImg = document.getElementById('razzo');
+var razzoP = [razzoG1, razzoG2, razzoG3, razzoG4];
+var colpo;
+var colpito;
+var xTemp;
+var xGTemp;
+var yTemp;
+var yGTemp;
+
+//FRUSTA
+var frustaP = [frustaG1, frustaG2, frustaG3, frustaG4];
+
+//txt Win1
+var txtWin1 = "sei l'unico superstite!<br>HAI VINTO!";
+
+//crea caselle, costruttore
+function creaCaselle(ind, img, life, power, gold, x1, y1, x2, y2, cacca, idcacca, ld, gd) {
+this.ind = ind;
+this.img = img;
+this.life = life;
+this.power = power;
+this.gold = gold
+this.x1 = x1;
+this.y1 = y1;
+this.x2 = x2;
+this.y2 = y2;
+this.cacca = cacca;
+this.idcacca = idcacca;
+this.ld = ld;
+this.gd = gd;
+this.create = function() {
+  document.getElementsByClassName('caselle')[ind].src = this.img;
+  }
+}
+
+//passa dati a costruttore caselle
+//lato 1
+casella0 = new creaCaselle(0, 'img/c0.jpg', 0, 0, 0, x1C, y1C, x2C, y2C, 0, 'c0', 0, 0);
+casella1 = new creaCaselle(1, 'img/c1.jpg', 0, 5, 0, x1C + xP, y1C, x2C + xP, y2C, 0, 'c1', 0, 0);
+casella2 = new creaCaselle(2, 'img/c2.jpg', 10, 0, 0, x1C + (xP*2), y1C, x2C + (xP*2), y2C, 0, 'c2', );
+casella3 = new creaCaselle(3, 'img/c3.gif', 0, 0, 0, x1C + (xP*3), y1C, x2C + (xP*3), y2C, 0, 'c3', 0, 0);
+casella4 = new creaCaselle(4, 'img/c4.jpg', 0, 0, 0, x1C + (xP*4), y1C, x2C + (xP*4), y2C, 0, 'c4', 0, 0);
+casella5 = new creaCaselle(5, 'img/c5.jpg', 0, 0, 0, x1C + (xP*5), y1C, x2C + (xP*5), y2C, 0, 'c5', 0, 0);
+casella6 = new creaCaselle(6, 'img/c6.jpg', 0, 0, 0, x1C + (xP*6), y1C, x2C + (xP*6), y2C, 0, 'c6');
+casella7 = new creaCaselle(7, 'img/c7.jpg', 0, 0, 0, x1C + (xP*7), y1C, x2C + (xP*7), y2C, 0, 'c7');
+casella8 = new creaCaselle(8, 'img/c8.jpg', 0, 0, 0, x1C + (xP*8), y1C, x2C + (xP*8), y2C, 0, 'c8', 0, 0);
+casella9 = new creaCaselle(9, 'img/c9.jpg', 0, 0, 0, x1C + (xP*9), y1C, x2C + (xP*9), y2C, 0, 'c9', 0, 0);
+casella10 = new creaCaselle(10, 'img/c10.gif', -10, 0, 0, x1C + (xP*10), y1C, x2C + (xP*10), y2C, 0, 'c10', 0, 0);
+casella11 = new creaCaselle(11, 'img/c11.jpg', 15, 0, 0, x1C + (xP*11), y1C, x2C + (xP*11), y2C, 0, 'c11');
+casella12 = new creaCaselle(12, 'img/c12.jpg', 0, 0, 0, x1C + (xP*12), y1C, x2C + (xP*12), y2C, 0, 'c12', 0, 0);
+casella13 = new creaCaselle(13, 'img/c13.jpg', 0, 0, 0, x1C + (xP*13), y1C, x2C + (xP*13), y2C, 0, 'c13', 0, 0);
+casella14 = new creaCaselle(14, 'img/c14.jpg', 0, 0, 0, x1C + (xP*14), y1C, x2C + (xP*14), y2C, 0, 'c14', 0, 0);
+casella15 = new creaCaselle(15, 'img/c15.jpg', 0, 0, 0, x1C + (xP*15), y1C, x2C + (xP*15), y2C, 0, 'c15', 0, 0);
+casella16 = new creaCaselle(16, 'img/c16.jpg', 0, 0, 0, x1C + (xP*16), y1C, x2C + (xP*16), y2C, 0, 'c16');
+casella17 = new creaCaselle(17, 'img/c17.png', 0, 0, 0, x1C + (xP*17), y1C, x2C + (xP*17), y2C, 0, 'c17', 0, 0);
+//lato 2
+casella18 = new creaCaselle(35, 'img/c18.jpg', 0, 0, 0, x1C + (xP*17), y1C + yP, x2C + (xP*17), y2C + yP, 0, 'c18', 0, 0);
+casella19 = new creaCaselle(53, 'img/c19.jpg', 0, 0, 0, x1C + (xP*17), y1C + (yP*2), x2C + (xP*17), y2C + (yP*2), 0, 'c19', 0, 0);
+casella20 = new creaCaselle(71, 'img/c20.png', 0, 0, 0, x1C + (xP*17), y1C + (yP*3), x2C + (xP*17), y2C + (yP*3), 0, 'c20');
+casella21 = new creaCaselle(89, 'img/c21.jpg', 0, 0, 0, x1C + (xP*17), y1C + (yP*4), x2C + (xP*17), y2C + (yP*4), 0, 'c21', 0, 0);
+//lato 3
+casella22 = new creaCaselle(88, 'img/c22.jpg', 0, 0, 0, x1C + (xP*16), y1C + (yP*4), x2C + (xP*16), y2C + (yP*4), 0, 'c22', 0, 0);
+casella23 = new creaCaselle(87, 'img/c23.jpg', 0, 0, 0, x1C + (xP*15), y1C + (yP*4), x2C + (xP*15), y2C + (yP*4), 0, 'c23', 0, 0);
+casella24 = new creaCaselle(86, 'img/c24.jpg', 0, 5, 0, x1C + (xP*14), y1C + (yP*4), x2C + (xP*14), y2C + (yP*4), 0, 'c24', 0, 0);
+casella25 = new creaCaselle(85, 'img/c25.jpg', 0, 0, 100, x1C + (xP*13), y1C + (yP*4), x2C + (xP*13), y2C + (yP*4), 0, 'c25', 0, 100);
+casella26 = new creaCaselle(84, 'img/c26.jpg', 0, 0, 0, x1C + (xP*12), y1C + (yP*4), x2C + (xP*12), y2C + (yP*4), 0, 'c26', 0, 0);
+casella27 = new creaCaselle(83, 'img/c27.png', 0, -5, 0, x1C + (xP*11), y1C + (yP*4), x2C + (xP*11), y2C + (yP*4), 0, 'c27', 0, 0);
+casella28 = new creaCaselle(82, 'img/c28.jpg', 0, 0, 0, x1C + (xP*10), y1C + (yP*4), x2C + (xP*10), y2C + (yP*4), 0, 'c28', 0, 0);
+casella29 = new creaCaselle(81, 'img/c29.gif', 0, 0, 0, x1C + (xP*9), y1C + (yP*4), x2C + (xP*9), y2C + (yP*4), 0, 'c29');
+casella30 = new creaCaselle(80, 'img/c30.jpg', 10, 0, 0, x1C + (xP*8), y1C + (yP*4), x2C + (xP*8), y2C + (yP*4), 0, 'c30');
+casella31 = new creaCaselle(79, 'img/c31.png', -20, 0, -20, x1C + (xP*7), y1C + (yP*4), x2C + (xP*7), y2C + (yP*4), 0, 'c31');
+casella32 = new creaCaselle(78, 'img/c32.jpg', 0, 0, 0, x1C + (xP*6), y1C + (yP*4), x2C + (xP*6), y2C + (yP*4), 0, 'c32', 0, 0);
+casella33 = new creaCaselle(77, 'img/c33.jpg', 0, 0, 0, x1C + (xP*5), y1C + (yP*4), x2C + (xP*5), y2C + (yP*4), 0, 'c33', 0, 0);
+casella34 = new creaCaselle(76, 'img/c34.jpg', 0, -2, -5, x1C + (xP*4), y1C + (yP*4), x2C + (xP*4), y2C + (yP*4), 0, 'c34', 0, -5);
+casella35 = new creaCaselle(75, 'img/c35.jpg', 0, 0, 0, x1C + (xP*3), y1C + (yP*4), x2C + (xP*3), y2C + (yP*4), 0, 'c35', 0, 0);
+casella36 = new creaCaselle(74, 'img/c36.png', -20, 0, 0, x1C + (xP*2), y1C + (yP*4), x2C + (xP*2), y2C + (yP*4), 0, 'c36', -20, 0);
+casella37 = new creaCaselle(73, 'img/c37.jpg', 0, 2, 0, x1C + xP, y1C + (yP*4), x2C  + xP, y2C + (yP*4), 0, 'c37', 0, 0);
+casella38 = new creaCaselle(72, 'img/c38.jpg', 0, 0, 0, x1C, y1C + (yP*4), x2C, y2C + (yP*4), 0, 'c38', 0, 0);
+//lato 4
+casella39 = new creaCaselle(54, 'img/c39.jpg', 0, 0, 0, x1C, y1C + (yP*3), x2C, y2C + (yP*3), 0, 'c39', 0, 0);
+casella40 = new creaCaselle(36, 'img/c40.jpg', 0, 0, 0, x1C, y1C + (yP*2), x2C, y2C + (yP*2), 0, 'c40', 0, 0);
+casella41 = new creaCaselle(18, 'img/c41.jpg', 0, 0, 0, x1C, y1C + yP, x2C, y2C + yP, 0, 'c41',);
+//lato 5
+casella42 = new creaCaselle(19, 'img/c42.jpg', 10, 0, 0, x1C + xP, y1C + yP, x2C + xP, y2C + yP, 0, 'c42');
+casella43 = new creaCaselle(20, 'img/c43.png', 0, 2, 0, x1C + (xP*2), y1C + yP, x2C + (xP*2), y2C + yP, 0, 'c43', 2, 0);
+casella44 = new creaCaselle(21, 'img/c44.jpg', 30, 0, -10, x1C + (xP*3), y1C + yP, x2C + (xP*3), y2C + yP, 0, 'c44');
+casella45 = new creaCaselle(22, 'img/c45.jpg', 0, 0, 0, x1C + (xP*4), y1C + yP, x2C + (xP*4), y2C + yP, 0, 'c45', 0, 0);
+casella46 = new creaCaselle(23, 'img/c46.jpg', 0, 0, 0, x1C + (xP*5), y1C + yP, x2C + (xP*5), y2C + yP, 0, 'c46', 0, 0);
+casella47 = new creaCaselle(24, 'img/c47.jpg', 0, 0, 0, x1C + (xP*6), y1C + yP, x2C + (xP*6), y2C + yP, 0, 'c47', 0, 0);
+casella48 = new creaCaselle(25, 'img/c48.jpg', 0, 0, 0, x1C + (xP*7), y1C + yP, x2C + (xP*7), y2C + yP, 0, 'c48');
+casella49 = new creaCaselle(26, 'img/c49.jpg', 0, 0, 0, x1C + (xP*8), y1C + yP, x2C + (xP*8), y2C + yP, 0, 'c49', 0, 0);
+casella50 = new creaCaselle(27, 'img/c50.jpg', 0, -3, 0, x1C + (xP*9), y1C + yP, x2C + (xP*9), y2C + yP, 0, 'c50', 0, 0);
+casella51 = new creaCaselle(28, 'img/c51.jpg', -15, 5, 0, x1C + (xP*10), y1C + yP, x2C + (xP*10), y2C + yP, 0, 'c51', -15, 0);
+casella52 = new creaCaselle(29, 'img/c52.jpg', 0, 0, 20, x1C + (xP*11), y1C + yP, x2C + (xP*11), y2C + yP, 0, 'c52', 0, 0);
+casella53 = new creaCaselle(30, 'img/c53.jpg', 0, 0, 0, x1C + (xP*12), y1C + yP, x2C + (xP*12), y2C + yP, 0, 'c53', 0, 0);
+casella54 = new creaCaselle(31, 'img/c54.jpg', 0, 0, 0, x1C + (xP*13), y1C + yP, x2C + (xP*13), y2C + yP, 0, 'c54', 0, 0);
+casella55 = new creaCaselle(32, 'img/c55.jpg', 0, 0, 0, x1C + (xP*14), y1C + yP, x2C + (xP*14), y2C + yP, 0, 'c55', 0, 0);
+casella56 = new creaCaselle(33, 'img/c56.gif', 0, 0, 0, x1C + (xP*15), y1C + yP, x2C + (xP*15), y2C + yP, 0, 'c56', 0, 0);
+casella57 = new creaCaselle(34, 'img/c57.jpg', 0, 0, 0, x1C + (xP*16), y1C + yP, x2C + (xP*16), y2C + yP, 0, 'c57', 0, 0);
+//lato 6
+casella58 = new creaCaselle(52, 'img/c58.jpg', 0, -3, 0, x1C + (xP*16), y1C + (yP*2), x2C + (xP*16), y2C + (yP*2), 0, 'c58', 0, 0);
+casella59 = new creaCaselle(70, 'img/c59.jpg', 0, 0, 0, x1C + (xP*16), y1C + (yP*3), x2C + (xP*16), y2C + (yP*3), 0, 'c59', 0, 0);
+//lato 7
+casella60 = new creaCaselle(69, 'img/c60.jpg', 0, 0, 0, x1C + (xP*15), y1C + (yP*3), x2C + (xP*15), y2C + (yP*3), 0, 'c60', 0, 0);
+casella61 = new creaCaselle(68, 'img/c61.jpg', 0, 0, -5, x1C + (xP*14), y1C + (yP*3), x2C + (xP*14), y2C + (yP*3), 0, 'c61', 0, -5);
+casella62 = new creaCaselle(67, 'img/c62.jpg', 10, 0, 0, x1C + (xP*13), y1C + (yP*3), x2C + (xP*13), y2C + (yP*3), 0, 'c62');
+casella63 = new creaCaselle(66, 'img/c63.jpg', 0, 0, 0, x1C + (xP*12), y1C + (yP*3), x2C + (xP*12), y2C + (yP*3), 0, 'c63');
+casella64 = new creaCaselle(65, 'img/c64.jpg', -5, -2, 0, x1C + (xP*11), y1C + (yP*3), x2C + (xP*11), y2C + (yP*3), 0, 'c64', -5, 0);
+casella65 = new creaCaselle(64, 'img/c65.jpg', 0, 0, 0, x1C + (xP*10), y1C + (yP*3), x2C + (xP*10), y2C + (yP*3), 0, 'c65',);
+casella66 = new creaCaselle(63, 'img/c66.jpg', 0, 0, 0, x1C + (xP*9), y1C + (yP*3), x2C + (xP*9), y2C + (yP*3), 0, 'c66', 0, 0);
+casella67 = new creaCaselle(62, 'img/c67.png', 0, 0, 0, x1C + (xP*8), y1C + (yP*3), x2C + (xP*8), y2C + (yP*3), 0, 'c67', 0, 0);
+casella68 = new creaCaselle(61, 'img/c68.jpg', 0, 0, 0, x1C + (xP*7), y1C + (yP*3), x2C + (xP*7), y2C + (yP*3), 0, 'c68', 0, 0);
+casella69 = new creaCaselle(60, 'img/c69.jpg', 0, 0, 50, x1C + (xP*6), y1C + (yP*3), x2C + (xP*6), y2C + (yP*3), 0, 'c69', 0, 50);
+casella70 = new creaCaselle(59, 'img/c70.jpg', 0, 0, 0, x1C + (xP*5), y1C + (yP*3), x2C + (xP*5), y2C + (yP*3), 0, 'c70', 0, 0);
+casella71 = new creaCaselle(58, 'img/c71.jpg', 0, 0, 0, x1C + (xP*4), y1C + (yP*3), x2C + (xP*4), y2C + (yP*3), 0, 'c71');
+casella72 = new creaCaselle(57, 'img/c72.jpg', 0, 0, 0, x1C + (xP*3), y1C + (yP*3), x2C + (xP*3), y2C + (yP*3), 0, 'c72', 0, 0);
+casella73 = new creaCaselle(56, 'img/c73.jpg', 0, 0, 0, x1C + (xP*2), y1C + (yP*3), x2C + (xP*2), y2C + (yP*3), 0, 'c73',);
+casella74 = new creaCaselle(55, 'img/c74.jpg', 0, 5, 0, x1C + xP, y1C + (yP*3), x2C + yP, y2C + (yP*3), 0, 'c74', 0, 0);
+//lato 8 - fine
+casella75 = new creaCaselle(37, 'img/c75.jpg', 0, 0, 0, x1C + xP, y1C + (yP*2), x2C + yP, y2C + (yP*2), 0, 'c75', 0, 0);
+casella76 = new creaCaselle(38, 'img/c76.jpg', 0, 0, 0, x1C + (xP*2), y1C + (yP*2), x2C + (xP*2), y2C + (yP*2), 0, 'c76', 0, 0);
+casella77 = new creaCaselle(39, 'img/c77.jpg', 10, 0, 0, x1C + (xP*3), y1C + (yP*2), x2C + (xP*3), y2C + (yP*2), 0, 'c77');
+casella78 = new creaCaselle(40, 'img/c78.jpg', -500, 0, 0, x1C + (xP*4), y1C + (yP*2), x2C + (xP*4), y2C + (yP*2), 0, 'c78',);
+casella79 = new creaCaselle(41, 'img/c79.jpg', 0, 0, 0, x1C + (xP*5), y1C + (yP*2), x2C + (xP*5), y2C + (yP*2), 0, 'c79', 0, 0);
+casella80 = new creaCaselle(42, 'img/c80.jpg', 0, 0, 0, x1C + (xP*6), y1C + (yP*2), x2C + (xP*6), y2C + (yP*2), 0, 'c80', 0, 0);
+casella81 = new creaCaselle(43, 'img/c81.png', 0, 0, 0, x1C + (xP*7), y1C + (yP*2), x2C + (xP*7), y2C + (yP*2), 0, 'c81', 0, 0);
+casella82 = new creaCaselle(44, 'img/c82.jpg', 0, 0, 0, x1C + (xP*8), y1C + (yP*2), x2C + (xP*8), y2C + (yP*2), 0, 'c82', 0, 0);
+casella83 = new creaCaselle(45, 'img/c83.jpg', 0, 0, 0, x1C + (xP*9), y1C + (yP*2), x2C + (xP*9), y2C + (yP*2), 0, 'c83', 0, 0);
+casella84 = new creaCaselle(46, 'img/c84.png', 0, 0, 0, x1C + (xP*10), y1C + (yP*2), x2C + (xP*10), y2C + (yP*2), 0, 'c84', 0, 0);
+casella85 = new creaCaselle(47, 'img/c85.jpg', 0, 0, 0, x1C + (xP*11), y1C + (yP*2), x2C + (xP*11), y2C + (yP*2), 0, 'c85',);
+casella86 = new creaCaselle(48, 'img/c86.jpg', 0, 0, 0, x1C + (xP*12), y1C + (yP*2), x2C + (xP*12), y2C + (yP*2), 0, 'c86', 0, 0);
+casella87 = new creaCaselle(49, 'img/c87.png', 0, 0, 0, x1C + (xP*13), y1C + (yP*2), x2C + (xP*13), y2C + (yP*2), 0, 'c87', 0, 0);
+casellaFine = new creaCaselle(50, 'img/fine.jpg', 0, 0, 0, x1C + (xP*14), y1C + (yP*2), x2C + (xP*14), y2C + (yP*2), 0 );
+
+
+//crea caselle
+function startCas() {
+casella0.create();
+casella1.create();
+casella2.create();
+casella3.create();
+casella4.create();
+casella5.create();
+casella6.create();
+casella7.create();
+casella8.create();
+casella9.create();
+casella10.create();
+casella11.create();
+casella12.create();
+casella13.create();
+casella14.create();
+casella15.create();
+casella16.create();
+casella17.create();
+casella18.create();
+casella19.create();
+casella20.create();
+casella21.create();
+casella22.create();
+casella23.create();
+casella24.create();
+casella25.create();
+casella26.create();
+casella27.create();
+casella28.create();
+casella29.create();
+casella30.create();
+casella31.create();
+casella32.create();
+casella33.create();
+casella34.create();
+casella35.create();
+casella36.create();
+casella37.create();
+casella38.create();
+casella39.create();
+casella40.create();
+casella41.create();
+casella42.create();
+casella43.create();
+casella44.create();
+casella45.create();
+casella46.create();
+casella47.create();
+casella48.create();
+casella49.create();
+casella50.create();
+casella51.create();
+casella52.create();
+casella53.create();
+casella54.create();
+casella55.create();
+casella56.create();
+casella57.create();
+casella58.create();
+casella59.create();
+casella60.create();
+casella61.create();
+casella62.create();
+casella63.create();
+casella64.create();
+casella65.create();
+casella66.create();
+casella67.create();
+casella68.create();
+casella69.create();
+casella70.create();
+casella71.create();
+casella72.create();
+casella73.create();
+casella74.create();
+casella75.create();
+casella76.create();
+casella77.create();
+casella78.create();
+casella79.create();
+casella80.create();
+casella81.create();
+casella82.create();
+casella83.create();
+casella84.create();
+casella85.create();
+casella86.create();
+casella87.create();
+casellaFine.create();
+}
+
+function openIstruzioni() {
+document.getElementById('openIst').removeEventListener('click', openIstruzioni);
+document.getElementsByClassName('popupIst')[0].style.display = 'block';
+}
+function closeIstruzioni() {
+document.getElementById('openIst').addEventListener('click', openIstruzioni);
+document.getElementsByClassName('popupIst')[0].style.display = 'none';
+}
+
+</script>
+</html>
